@@ -1,6 +1,14 @@
 package com.example.springbootstarter.simpleapi.topic;
 
+import javax.persistence.Entity;
+import javax.persistence.Id;
+
+// We need to create table with following details as column (id, name, description).
+// We have JPA to do all this work, mapping entity class and to convert it too. This can be achieved by @entity.
+@Entity
 public class Topic {
+
+    @Id      // @Id makes String id as the primary key. It is a field annotation.
     private String id;
     private String name;
     private String description;
