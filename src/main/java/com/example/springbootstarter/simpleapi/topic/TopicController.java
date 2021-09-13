@@ -4,8 +4,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 @RestController
+// This is the annotation that we need to put on top of any class to make that a Rest controller.
 public class TopicController {
 
     @Autowired
@@ -16,10 +18,10 @@ public class TopicController {
     // to get all topics.
     @RequestMapping("/topics")
     // @GetMapping("/topics")
-    // The /topics returns a json list of objects of the type "topic". Spring MVC deals with the conversion
+    // The /topics returns a list of objects of the type "topic". Spring MVC deals with the conversion
     // of list data into json.
     public List<Topic> getAllTopics(){
-        return topicService.getTopics();
+        return topicService.getAllTopics();
     }
 
     // to get a single topic by id.
@@ -28,7 +30,7 @@ public class TopicController {
     // { } -- curly brackets are used here to specify the value after /topic/ is a variable, to get required topic. we
     // can give any name to that variable. But how we will give id/value got from url to getTopicById. This can be resolved
     // using the @PathVariable("nameOfVariableInjectedToMethod") annotation. "(...)" can be neglected if varName is same.
-    public Topic getTopicById (@PathVariable String id){
+    public Optional<Topic> getTopicById (@PathVariable String id){
         return topicService.getTopic(id);
     }
 
