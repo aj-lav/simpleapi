@@ -8,7 +8,9 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.NoSuchElementException;
 import java.util.Optional;
+
 
 @Service
 // The way we tell the spring that this class is for the service purpose is, by using the @Service
@@ -21,7 +23,9 @@ public class TopicService {
     // A new member variable to access the TopicDataRepo from here.
     private TopicDataRepo topicDataRepo;
 
-
+    public TopicService(TopicDataRepo topicDataRepo) {
+        this.topicDataRepo = topicDataRepo;
+    }
 
     public List<Topic> getAllTopics() {
         // findAll gets all instances from DB. But it is an iterable so we need to convert it into List.
