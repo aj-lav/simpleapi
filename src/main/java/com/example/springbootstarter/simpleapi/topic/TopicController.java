@@ -15,7 +15,7 @@ public class TopicController {
     // here topicService is an object created for utilizing the service offered by the TopicService.
     // @Autowired is an annotation used to say "inject service to this class" to spring.
 
-    // to get all topics.
+
     @RequestMapping("/topics")
     // @GetMapping("/topics")
     // The /topics returns a list of objects of the type "topic". Spring MVC deals with the conversion
@@ -24,7 +24,7 @@ public class TopicController {
         return topicService.getAllTopics();
     }
 
-    // to get a single topic by id.
+
     @RequestMapping("/topics/{id}")
     //@GetMapping("/topic/{id}")
     // { } -- curly brackets are used here to specify the value after /topic/ is a variable, to get required topic. we
@@ -34,7 +34,6 @@ public class TopicController {
         return topicService.getTopic(id);
     }
 
-    // to create a new element
     @RequestMapping(method = RequestMethod.POST, value = "/topics")
     //@PostMapping("/topics")
     public String addTopic(@RequestBody Topic topic){
@@ -45,17 +44,17 @@ public class TopicController {
         return "Topic added";
     }
 
-    // to update an element
+
     @RequestMapping(method = RequestMethod.PUT, value = "/topics/{id}")
-//    @PutMapping("/topics/{id}")
+    // @PutMapping("/topics/{id}")
     public String updateTopic(@RequestBody Topic topic, @PathVariable String id) {
         topicService.updateTopic(topic,id);
         return "Topic "+id+" updated";
     }
 
-    // to delete an element
+
     @RequestMapping(method = RequestMethod.DELETE, value = "/topics/{id}")
-//    @DeleteMapping("/topics/{id}")
+    // @DeleteMapping("/topics/{id}")
     public String deleteTopic( @PathVariable String id){
         topicService.deleteTopic(id);
         return "Topic "+id+" deleted";
